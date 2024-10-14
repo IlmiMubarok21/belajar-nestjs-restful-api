@@ -34,9 +34,9 @@ export class PrismaService
   }
 
   onModuleInit() {
-    this.$on('info', this.logger.info);
-    this.$on('warn', this.logger.warn);
-    this.$on('error', this.logger.error);
-    this.$on('query', this.logger.info);
+    this.$on('info', (e) => this.logger.info(e));
+    this.$on('warn', (e) => this.logger.warn(e));
+    this.$on('error', (e) => this.logger.error(e));
+    this.$on('query', (e) => this.logger.info(e));
   }
 }

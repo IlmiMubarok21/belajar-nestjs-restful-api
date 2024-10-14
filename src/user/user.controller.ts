@@ -1,9 +1,10 @@
-import { Body, Controller, Get, HttpCode, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Patch, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { WebResponse } from '../model/web.model';
 import {
   LoginUserRequest,
   RegisterUserRequest,
+  UpdateUserRequest,
   UserResponse,
 } from '../model/user.model';
 import { Auth } from 'common/auth.decorator';
@@ -33,6 +34,15 @@ export class UserController {
   @Get('/current')
   async get(@Auth() user: User): Promise<WebResponse<UserResponse>> {
     const result = await this.userService.get(user);
+    return { data: result };
+  }
+
+  @Patch('/current')
+  async update(
+    @Auth() user: User,
+    @Body() request: UpdateUserRequest,
+  ): Promise<WebResponse<UserResponse>> {
+    const result = await this.userService.update(user, request);
     return { data: result };
   }
 }

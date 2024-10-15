@@ -1,0 +1,124 @@
+### Register
+POST http://localhost:3000/api/users
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "khannedy",
+  "name": "Eko Khannedy",
+  "password": "rahasia"
+}
+
+### Login
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "khannedy",
+  "password": "rahasia12345"
+}
+
+### Get User
+GET http://localhost:3000/api/users/current
+Accept: application/json
+Authorization: <token>
+
+### Logout User
+DELETE http://localhost:3000/api/users/current
+Accept: application/json
+Authorization: <token>
+
+### Update User
+PATCH http://localhost:3000/api/users/current
+Content-Type: application/json
+Accept: application/json
+Authorization: <token>
+
+{
+  "password": "rahasia12345"
+}
+
+### Create Contact
+POST http://localhost:3000/api/contacts
+Content-Type: application/json
+Accept: application/json
+Authorization: <token>
+
+{
+  "first_name": "Joko",
+  "last_name": "Morro",
+  "email": "joko@example.com",
+  "phone": "089999999999"
+}
+
+### Update Contact
+PUT http://localhost:3000/api/contacts/321
+Content-Type: application/json
+Accept: application/json
+Authorization: <token>
+
+{
+  "first_name": "Budi",
+  "last_name": "Morro",
+  "email": "budi@example.com",
+  "phone": "089999999999"
+}
+
+### Get Contact
+GET http://localhost:3000/api/contacts/321
+Accept: application/json
+Authorization: <token>
+
+### Delete Contact
+DELETE http://localhost:3000/api/contacts/322
+Accept: application/json
+Authorization: <token>
+
+### Search Contacts
+GET http://localhost:3000/api/contacts?size=10&page=1
+Accept: application/json
+Authorization: <token>
+
+### Create Address
+POST http://localhost:3000/api/contacts/321/addresses
+Content-Type: application/json
+Accept: application/json
+Authorization: <token>
+
+{
+  "street": "jalan contoh",
+  "city": "kota contoh",
+  "province": "provinsi contoh",
+  "country": "negara contoh",
+  "postal_code": "23434"
+}
+
+### Get Address
+GET http://localhost:3000/api/contacts/321/addresses/88
+Accept: application/json
+Authorization: <token>
+
+### List Addresses
+GET http://localhost:3000/api/contacts/321/addresses
+Accept: application/json
+Authorization: <token>
+
+### Update Address
+PUT http://localhost:3000/api/contacts/321/addresses/89
+Content-Type: application/json
+Accept: application/json
+Authorization: <token>
+
+{
+  "street": "jalan contoh updated",
+  "city": "kota contoh updated",
+  "province": "provinsi contoh",
+  "country": "negara contoh",
+  "postal_code": "23434"
+}
+
+### Delete Address
+DELETE http://localhost:3000/api/contacts/321/addresses/89
+Accept: application/json
+Authorization: <token>

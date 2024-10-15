@@ -123,6 +123,16 @@ export class AddressService {
     return this.toAddressResponse(address);
   }
 
+  async list(user: User, contactId: number): Promise<AddressResponse[]> {
+    await this.contactService.checkContactMustExists(user.username, contactId);
+
+    const addresses = await this.prismaService.address.findMany({
+      where: { contact_id: contactId },
+    });
+
+    return addresses.map(this.toAddressResponse);
+  }
+
   async checkAddressMustExists(
     contactId: number,
     addressId: number,

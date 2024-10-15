@@ -70,7 +70,7 @@ export class UserService {
       throw new HttpException('Username or password is invalid', 401);
     }
 
-    const isPasswordValid = bcrypt.compare(
+    const isPasswordValid = await bcrypt.compare(
       loginRequest.password,
       user.password,
     );

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'common/prisma.service';
 import * as bcrypt from 'bcrypt';
-import { Contact, User } from '@prisma/client';
+import { Address, Contact, User } from '@prisma/client';
 
 @Injectable()
 export class TestService {
@@ -37,6 +37,12 @@ export class TestService {
     });
   }
 
+  async getAddress(): Promise<Address> {
+    return this.prismaService.address.findFirst({
+      where: { contact: { username: 'test' } },
+    });
+  }
+
   async createUser() {
     await this.prismaService.user.create({
       data: {
@@ -56,6 +62,21 @@ export class TestService {
         email: 'test@example.com',
         phone: '9999',
         username: 'test',
+      },
+    });
+  }
+
+  async createAddress() {
+    const contact = await this.getContact();
+
+    await this.prismaService.address.create({
+      data: {
+        contact_id: contact.id,
+        street: 'jalan test',
+        city: 'kota test',
+        province: 'provinsi test',
+        country: 'negara test',
+        postal_code: '1111',
       },
     });
   }
